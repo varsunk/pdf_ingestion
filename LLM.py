@@ -7,6 +7,9 @@ class LLM():
         self._uploaded_files = []
 
     def upload(self, file: str, config: dict[str, str]):
+        '''
+        Uploads file to LLM api to be stored/processed.
+        '''
         # TODO: figure out return type (file, but not sure what the type should be for the type annotation)
         file = self._client.files.upload(file=file, config=config)
         self._uploaded_files.append(file)
