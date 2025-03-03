@@ -7,12 +7,16 @@ class LLM():
         self._uploaded_files = []
 
     def upload(self, file: str, config: dict[str, str]):
-        file = self._client.files.upload(file=file, config=file)
+        # TODO: figure out return type (file, but not sure what the type should be for the type annotation)
+        file = self._client.files.upload(file=file, config=config)
         self._uploaded_files.append(file)
 
         return file
     
     def _prompt_text(self, prompt: str) -> genai.types.GenerateContentResponse:
+        '''
+        Receives text prompt results from LLM api
+        '''
         response = self._client.models.generate_content(
             model=self._model_id,
             contents=[prompt]
